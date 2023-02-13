@@ -10,15 +10,17 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import Home from './pages/Home/Home.vue';
 import TrainingAddDetails from './pages/TrainingAddDetails/TrainingAddDetails.vue';
+import TrainingDetails from './pages/TrainingDetails/TrainingDetails.vue';
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 var routes = [
     { path: '/', component: Home },
-    { path: '/training-add-details/:id', component: TrainingAddDetails }
-];
-
+    { path: '/training-add-details/:id', component: TrainingAddDetails },
+    { path: '/training-details/:id', name: "Details", component: TrainingDetails },
+  ];
+  
 const router = createRouter({
     history: createWebHistory(),
     routes,

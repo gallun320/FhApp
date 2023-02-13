@@ -1,8 +1,9 @@
 <template>
-  <b-card title="Card title" sub-title="Card subtitle">
+  <b-card title="Training add details">
     <b-form @submit="onSubmit">
       <b-card 
-        v-for="(counter, training) in trainings"
+        style="margin-top: 10px;"
+        v-for="(training, counter) in trainings"
         v-bind:key="counter"
         >
         <b-form-group label-cols="4" label-cols-lg="2" label="Training name:" label-for="training-name">
@@ -15,25 +16,35 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group label-cols="4" label-cols-lg="2" label="Training value:" label-for="training-value">
+        <b-form-group label-cols="4" label-cols-lg="2" label="Training repeat:" label-for="training-repeat">
           <b-form-input
-            id="training-value"
-            v-model="training.value"
+            id="training-repeat"
+            v-model="training.repeat"
             type="text"
-            placeholder="Enter training value"
+            placeholder="Enter training repeat"
+            required
+          ></b-form-input>
+        </b-form-group> 
+
+        <b-form-group label-cols="4" label-cols-lg="2" label="Training count in repeat:" label-for="training-count-in-repeat">
+          <b-form-input
+            id="training-count-in-repeat"
+            v-model="training.countInRepeat"
+            type="text"
+            placeholder="Enter training count in repeat"
             required
           ></b-form-input>
         </b-form-group> 
         <br>
-        <b-button @click="remove(counter)" type="submit" variant="danger">Remove</b-button>
+        <b-button @click="remove(counter)" variant="danger">Remove</b-button>
         
       </b-card >
       
       <br>
       
       <b-button-group>
-          <b-button type="submit" variant="primary">Add</b-button>
-          <b-button @click="complete()" variant="success">Complete</b-button>
+          <b-button type="submit" variant="primary">Complete</b-button>
+          <b-button @click="add()" variant="success">Add</b-button>
         </b-button-group>
     </b-form>
   </b-card>
@@ -45,23 +56,25 @@
       return {
         trainings: [{
           name: "",
-          value: ""
+          repeat: 0,
+          countInRepeat: 0
         }]
       }
     },
     methods: {
       onSubmit(e) {
         e.preventDefault();
-        this.trainings.push({
-          name:'',
-          value: ''
-        });
+        console.log(this.$route.params)
       },
       remove(counter) {
         this.trainings.splice(counter,1);
       },
-      complete() {
-        console.log(this.$route.params)
+      add() {
+        this.trainings.push({
+          name:'',
+          repeat: 0,
+          countInRepeat: 0
+        });
       }
     }
   }

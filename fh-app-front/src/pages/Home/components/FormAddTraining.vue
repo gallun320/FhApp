@@ -1,10 +1,10 @@
 <template>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
+        label-cols="4" label-cols-lg="2"
         id="training-name-group"
         label="Training name:"
         label-for="training-name"
-        description="Place any name that would you like"
       >
         <b-form-input
           id="training-name"
@@ -14,7 +14,7 @@
           required
         ></b-form-input>
       </b-form-group>
-
+      <br>
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
 </template>
