@@ -1,3 +1,8 @@
+using fh_app_back.Features.Training;
+using FH.Domain.Context;
+using FH.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<TrainingRepository>();
+builder.Services.AddScoped<ExerciseRepository>();
+
+builder.Services.AddScoped<TrainingCreateHandler>();
 
 var app = builder.Build();
 
