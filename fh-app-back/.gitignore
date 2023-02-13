@@ -1,0 +1,20 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+# Visual Studio cache/options directory
+.vs/
+.idea/
+
+# User-specific files
+*.user
+
+appsettings.Local.json
+resources.Local.json
+~$*.docx
+*.coverage
+
+#VS Code artifacts
+.vscode
