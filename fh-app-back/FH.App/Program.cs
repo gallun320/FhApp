@@ -1,5 +1,6 @@
 using FH.App.Features.Training.AddDetails;
 using FH.App.Features.Training.Create;
+using FH.App.Features.Training.Delete;
 using FH.App.Features.Training.Detail;
 using FH.App.Features.Training.List;
 using FH.Domain.Repositories;
@@ -27,6 +28,7 @@ builder.Services.AddScoped<CreateTrainingHandler>();
 builder.Services.AddScoped<AddDetailTrainingHandler>();
 builder.Services.AddScoped<DetailTrainingHandler>();
 builder.Services.AddScoped<ListTrainingHandler>();
+builder.Services.AddScoped<DeleteTrainingHandler>();
 
 var app = builder.Build();
 
