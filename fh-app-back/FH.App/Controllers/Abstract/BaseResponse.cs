@@ -1,4 +1,4 @@
-﻿using FH.Infrastructure.Exceptions;
+﻿using FH.Domain.Exceptions;
 
 namespace fh_app_back.Controllers.Abstract;
 

@@ -1,14 +1,15 @@
 ﻿using FH.Domain.Entities;
+using FH.Domain.Exceptions;
 using FH.Domain.Repositories;
-using FH.Infrastructure.Exceptions;
+using FH.Domain.RepositoryInterfaces;
 
 namespace fh_app_back.Features.Training
 {
 	public class TrainingCreateHandler
 	{
-		private readonly TrainingRepository _trainingRepository;
+		private readonly ITrainingRepository _trainingRepository;
 
-		public TrainingCreateHandler(TrainingRepository trainingRepository)
+		public TrainingCreateHandler(ITrainingRepository trainingRepository)
 		{
 			_trainingRepository = trainingRepository;
 		}

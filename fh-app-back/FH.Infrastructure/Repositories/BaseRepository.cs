@@ -1,17 +1,19 @@
 ﻿using System.Linq.Expressions;
 using FH.Domain.Context;
-using FH.Domain.Context.Abstract;
-using FH.Infrastructure.Exceptions;
+using FH.Domain.Exceptions;
+using FH.Domain.RepositoryInterfaces;
+using FH.Infrastructure.Context;
+using FH.Infrastructure.Context.Abstract;
 using FH.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace FH.Domain.Repositories.Abstract;
+namespace FH.Infrastructure.Repositories;
 
 public class BaseRepository<TEntity> : IBaseRepository<TEntity> 
     where TEntity : class
 {
-    private readonly ApplicationContext _context;
+    private readonly ApplicationDbContext _dbContext;
     
     /// <summary>
     /// Logger
@@ -22,11 +24,11 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
     /// <summary>
     /// Base repository constructor
     /// </summary>
-    /// <param name="context">Fabric data context</param>
+    /// <param name="dbContext">Fabric data context</param>
     /// <param name="logger">Logger</param>
-    public BaseRepository(ApplicationContext context, ILogger logger)
+    public BaseRepository(ApplicationDbContext dbContext, ILogger logger)
     {
-        _context = context;
+        _dbContext = dbContext;
         Logger = logger;
     }
     
@@ -37,7 +39,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
     /// <param name="func">Action inside context</param>
     /// <param name="cancellationToken">Cancel token</param>
     /// <returns>Result</returns>
-    protected Task<T> SaveChangesAndHandleExceptionAsync<T>(Func<ApplicationContext, CancellationToken, Task<Func<T>>> func, CancellationToken cancellationToken)
+    protected Task<T> SaveChangesAndHandleExceptionAsync<T>(Func<ApplicationDbContext, CancellationToken, Task<Func<T>>> func, CancellationToken cancellationToken)
         => HandleAsync(async (dbContext, cToken) =>
         {
             var afterSaveFunc = await func(dbContext, cToken);
@@ -54,12 +56,12 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
     /// <param name="cancellationToken">Cancel token</param>
     /// <returns>Result</returns>
     protected async Task<T> HandleAsync<T>(
-        Func<ApplicationContext, CancellationToken, Task<T>> func, 
+        Func<ApplicationDbContext, CancellationToken, Task<T>> func, 
         CancellationToken cancellationToken)
     {
         try
         {
-            var result = await func(_context, cancellationToken);
+            var result = await func(_dbContext, cancellationToken);
             return result;
         }
         catch (DbUpdateException e)

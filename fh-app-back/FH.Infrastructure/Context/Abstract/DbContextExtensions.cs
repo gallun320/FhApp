@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace FH.Domain.Context.Abstract;
+namespace FH.Infrastructure.Context.Abstract;
 
 /// <summary>
 /// Extensions for work db context

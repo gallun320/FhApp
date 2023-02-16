@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FH.Domain.Context;
+namespace FH.Infrastructure.Context;
 
 /// <summary>
 /// Extension for setup scheme

@@ -1,4 +1,4 @@
-﻿namespace FH.Infrastructure.Exceptions
+﻿namespace FH.Domain.Exceptions
 {
 	public class FhException : Exception
 	{
