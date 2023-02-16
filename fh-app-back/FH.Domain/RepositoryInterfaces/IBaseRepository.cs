@@ -6,15 +6,15 @@ public interface IBaseRepository<TEntity>
     where TEntity : class
 {
     Task<bool> AnyAsync(
-        Expression<Func<TEntity, bool>> predicate,
+        Expression<Func<TEntity, bool>>? predicate,
         CancellationToken cancellationToken);
 
     Task<TEntity?> GetOneAsync(
-        Expression<Func<TEntity, bool>> predicate,
+        Expression<Func<TEntity, bool>>? predicate,
         CancellationToken cancellationToken);
     
     Task<IList<TEntity>> GetAsync(
-        Expression<Func<TEntity, bool>> predicate,
+        Expression<Func<TEntity, bool>>? predicate,
         CancellationToken cancellationToken);
     
     Task<TEntity> AddAsync(TEntity model, CancellationToken cancellationToken);

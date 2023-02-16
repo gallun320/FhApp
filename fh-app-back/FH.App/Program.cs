@@ -1,4 +1,4 @@
-using fh_app_back.Features.Training;
+using FH.App.Features.Training.Create;
 using FH.Domain.Context;
 using FH.Domain.Repositories;
 using FH.Domain.RepositoryInterfaces;
@@ -21,7 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<ITrainingRepository, TrainingRepository>();
 builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
 
-builder.Services.AddScoped<TrainingCreateHandler>();
+builder.Services.AddScoped<CreateTrainingHandler>();
 
 var app = builder.Build();
 

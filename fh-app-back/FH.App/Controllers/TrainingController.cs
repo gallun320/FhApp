@@ -1,25 +1,25 @@
-﻿using fh_app_back.Features.Training;
-using FH.App.Controllers.Abstract;
+﻿using FH.App.Controllers.Abstract;
+using FH.App.Features.Training.Create;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fh_app_back.Controllers
 {
 	public class TrainingController : BaseControllerApi
 	{
-		private readonly TrainingCreateHandler _trainingCreateHandler;
+		private readonly CreateTrainingHandler _createTrainingHandler;
 		
 		public TrainingController(
 			ILogger<TrainingController> logger, 
-			TrainingCreateHandler trainingCreateHandler) 
+			CreateTrainingHandler createTrainingHandler) 
 			: base(logger)
 		{
-			_trainingCreateHandler = trainingCreateHandler;
+			_createTrainingHandler = createTrainingHandler;
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateTraining([FromBody] TrainingCreateCommand createCommand, CancellationToken cancellationToken)
+		public async Task<IActionResult> CreateTraining([FromBody] CreateTrainingCommand command, CancellationToken cancellationToken)
 		{
-			return MakeResponse(await _trainingCreateHandler.HandlerAsync(createCommand, cancellationToken));
+			return MakeResponse(await _createTrainingHandler.HandlerAsync(command, cancellationToken));
 		}
 
 		

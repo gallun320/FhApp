@@ -1,20 +1,19 @@
 ﻿using FH.Domain.Entities;
 using FH.Domain.Exceptions;
-using FH.Domain.Repositories;
 using FH.Domain.RepositoryInterfaces;
 
-namespace fh_app_back.Features.Training
+namespace FH.App.Features.Training.Create
 {
-	public class TrainingCreateHandler
+	public class CreateTrainingHandler
 	{
 		private readonly ITrainingRepository _trainingRepository;
 
-		public TrainingCreateHandler(ITrainingRepository trainingRepository)
+		public CreateTrainingHandler(ITrainingRepository trainingRepository)
 		{
 			_trainingRepository = trainingRepository;
 		}
 
-		public async Task<TrainingCreateResult> HandlerAsync(TrainingCreateCommand command, CancellationToken cancellationToken)
+		public async Task<CreateTrainingDto> HandlerAsync(CreateTrainingCommand command, CancellationToken cancellationToken)
 		{
 			var training = await _trainingRepository.GetOneAsync(
 				entity => entity.Name == command.Name, cancellationToken);
