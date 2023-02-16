@@ -13,7 +13,7 @@ namespace FH.App.Features.Training.Create
 			_trainingRepository = trainingRepository;
 		}
 
-		public async Task<CreateTrainingDto> HandlerAsync(CreateTrainingCommand command, CancellationToken cancellationToken)
+		public async Task<CreateTrainingDto> HandleAsync(CreateTrainingCommand command, CancellationToken cancellationToken)
 		{
 			var training = await _trainingRepository.GetOneAsync(
 				entity => entity.Name == command.Name, cancellationToken);
@@ -22,7 +22,8 @@ namespace FH.App.Features.Training.Create
 				throw new FhException($"Training already exist");
 
 			var result = await _trainingRepository.AddAsync(new TrainingEntity {
-					Name = command.Name
+					Name = command.Name,
+					IsActive = true
 				},
 				cancellationToken);
 

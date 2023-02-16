@@ -1,8 +1,7 @@
-﻿using FH.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace FH.Domain.Context;
+namespace FH.Infrastructure.Context;
 
 public class ApplicationDbContextInitializer
 {

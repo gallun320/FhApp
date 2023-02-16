@@ -8,11 +8,20 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.12">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.12" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\FH.Domain\FH.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Context\Migrations" />
     </ItemGroup>
 
 </Project>
