@@ -1,0 +1,1 @@
+dotnet ef migrations add "Migration_{context message}" --project FH.Infrastructure --startup-project FH.App --output-dir Context\Migrations
